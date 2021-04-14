@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load description %}
+{% block content %}
+
+<nav aria-label="breadcrumb" class="pt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
+    <li class="breadcrumb-item"><a href="#">{{ product.category.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+<div class="row pt-3 pb-3">
+    <div class="col-md-4">
+        <img src="{{ product.image.url }}" alt="" class="img-fluid">
+    </div>
+    <div class="col-md-8">
+        <h3>{{ product.title }}</h3>
+        <p>Цена: {{ product.price }} руб.</p>
+        <p>Описание: {{ product.description }}</p>
+        <hr>
+        <a href="{% url 'add_to_cart' ct_model=ct_model slug=product.slug %}" class="btn btn-danger">Добавить в корзину</a>
+    </div>
+    <p class="mt-4">Характеристики:</p>
+
+    {{ product|product_desc }}
+
+</div>
+
+
+{% endblock content %}
